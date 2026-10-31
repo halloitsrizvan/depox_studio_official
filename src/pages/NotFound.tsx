@@ -1,6 +1,8 @@
 import { TLink } from '../components/TLink'
+import { usePageMeta } from '../lib/seo'
 
 export default function NotFound() {
+  usePageMeta({ title: 'Page not found | DepoX Studio', path: '/404', noindex: true })
   return (
     <main id="main" className="not-found">
       <h1 className="display">

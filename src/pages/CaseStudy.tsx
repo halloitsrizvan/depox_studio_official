@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { gsap, useGSAP, SplitText, revealLines, EASE, prefersReducedMotion } from '../lib/motion'
 import { useSite } from '../lib/site'
+import { usePageMeta } from '../lib/seo'
 import { PROJECTS, waLink } from '../data'
 import { Arrow, ArrowUpRight } from '../components/Brand'
 import { Magnetic } from '../components/Magnetic'
@@ -16,9 +17,12 @@ export default function CaseStudy() {
   const root = useRef<HTMLElement>(null)
   const { ready } = useSite()
 
-  useEffect(() => {
-    if (p) document.title = `${p.title} | DepoX Studio`
-  }, [p])
+  usePageMeta({
+    title: p ? `${p.title}: ${p.subtitle} | DepoX Studio` : 'Page not found | DepoX Studio',
+    description: p?.description,
+    path: p ? `/work/${p.slug}` : '/404',
+    noindex: !p,
+  })
 
   useGSAP(
     () => {

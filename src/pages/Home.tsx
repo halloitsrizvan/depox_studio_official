@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { usePageMeta } from '../lib/seo'
 import { Hero } from '../sections/Hero'
 import { Manifesto } from '../sections/Manifesto'
 import { Work } from '../sections/Work'
@@ -9,9 +9,7 @@ import { Testimonials } from '../sections/Testimonials'
 import { Contact } from '../sections/Contact'
 
 export default function Home() {
-  useEffect(() => {
-    document.title = 'DepoX Studio | Branding & Web Design'
-  }, [])
+  usePageMeta({ title: 'DepoX Studio | Branding & Web Design', path: '/' })
 
   return (
     <main id="main">
